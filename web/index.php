@@ -19,7 +19,9 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->get('/{dato}', function($dato) use($app) {
   $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('index.twig');
+  return $app['twig']->render('index.twig', array(
+        'dato' => $dato,
+    ));
 });
 
 $app->get('/enviarDato/{dato}', function($dato) use($app) {
