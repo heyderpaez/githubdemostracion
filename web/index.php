@@ -24,7 +24,7 @@ $app->get('/', function() use($app) {
 
 $app->get('/enviarDato/{dato}', function($dato) use($app) {
   $app['monolog']->addDebug('logging output.');
-  return echo $dato;
+  return $dato;
 });
 
 $app->run();
