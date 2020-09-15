@@ -17,16 +17,24 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 // Our web handlers
 
-$app->get('/{dato}', function($dato) use($app) {
+$app->get('/', function($dato) use($app) {
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('index.twig', array(
         'dato' => $dato,
     ));
 });
 
-$app->get('/enviarDato/{dato}', function($dato) use($app) {
+$app->get('/enviarDato/{temperatura}/{humedad}', function($temperatura, $humedad) use($app) {
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('index.twig');
 });
+
+$app->post('/enviarDato', function (Request $request) use ($app) {
+   $temperatura = $request->get('tempeHouse');
+  	return $app['twig']->render('index.twig', array(
+        'dato' => $temperatura,
+    ));
+});
+
 
 $app->run();
