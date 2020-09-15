@@ -7,6 +7,9 @@
   background: #845ac7;
   border-color: #845ac7;
 }
+#brochureButton{
+  font-size: 23px;
+}
 .jumbotron .btn-primary:hover {
   background: #7646c1;
 }
