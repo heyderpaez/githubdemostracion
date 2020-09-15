@@ -24,10 +24,6 @@ $app->get('/{dato}', function($dato) use($app) {
     ));
 });
 
-$app->get('/enviarDato/{temperatura}/{humedad}', function($temperatura, $humedad) use($app) {
-  $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('index.twig');
-});
 
 $app->post('/enviarDato', function (Request $request) use ($app) {
    $temperatura = $request->get('tempeHouse');
