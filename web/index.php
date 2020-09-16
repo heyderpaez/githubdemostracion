@@ -23,9 +23,11 @@ $app->get('/', function() use($app) {
 });
 
 
-$app->post('/enviarDato', function (Request $request=null) use ($app) {
+$app->post('/enviarDato', function (Request $request) use ($app) {
    return $request;
 });
+
+
 
 
 $app->run();
