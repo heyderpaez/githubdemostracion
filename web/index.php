@@ -23,7 +23,7 @@ $app->get('/', function() use($app) {
 });
 
 
-$app->post('/enviarDato', function (Request $request) use ($app) {
+$app->post('/enviarDato', function (Request $request="") use ($app) {
    $temperatura = $request->get('tempeHouse');
    return 'OK';
 });
