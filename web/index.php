@@ -25,9 +25,7 @@ $app->get('/', function() use($app) {
 
 $app->post('/enviarDato', function (Request $request) use ($app) {
    $temperatura = $request->get('tempeHouse');
-  	return $app['twig']->render('index.twig', array(
-        'dato' => $temperatura,
-    ));
+   return 'OK';
 });
 
 
