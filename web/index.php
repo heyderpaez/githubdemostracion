@@ -24,8 +24,10 @@ $app->get('/', function() use($app) {
 
 
 $app->post('/enviarDato', function (Request $request) use ($app) {
-   $JSON = json_decode($request);
-   return var_dump(json_decode($JSON, true));
+   $temperatura = $request->get('tempeHouse');
+  	return $app['twig']->render('index.twig', array(
+        'dato' => $temperatura,
+    ));
 });
 
 
