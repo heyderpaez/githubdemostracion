@@ -25,11 +25,16 @@ $app->get('/', function() use($app) {
 });
 
 
+//Ruta de demostración, para validar que se recibe(n) dato(s) y se responde con este mismo
 $app->post('/enviarDato', function (Request $request) use ($app) {
    return $request;
 });
 
 
-
+//Ruta de demostración, se recibe(n) dato(s) y se manipulan
+$app->post('/modificarDato', function (Request $request) use ($app) {
+   $DatoCorrecto = $request->get('DatoCorrecto');
+   return $DatoCorrecto;
+});
 
 $app->run();
