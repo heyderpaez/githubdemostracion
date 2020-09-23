@@ -36,7 +36,7 @@ $app->post('/modificarDato', function (Request $request) use ($app) {
    	$nombre = $request->get('nombre');
 	$respuesta = "Hola ";
 	$respuesta .= $nombre;
-   	return $nombre;
+   	return $respuesta;
 });
 
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
