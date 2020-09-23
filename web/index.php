@@ -33,9 +33,9 @@ $app->post('/enviarDato', function (Request $request) use ($app) {
 
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
 $app->post('/modificarDato', function (Request $request) use ($app) {
-   	$DatoCorrecto = $request->get('DatoCorrecto');
-	$DatoCorrecto = (int)$DatoCorrecto + 10;
-   	return $DatoCorrecto;
+   	$nombre = $request->get('nombre');
+	$respuesta = "Hola " . $nombre;
+   	return $respuesta;
 });
 
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
