@@ -34,8 +34,9 @@ $app->post('/enviarDato', function (Request $request) use ($app) {
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
 $app->post('/modificarDato', function (Request $request) use ($app) {
    	$nombre = $request->get('nombre');
-	$respuesta = "Hola " . (string)$nombre;
-   	return $respuesta;
+	$respuesta = "Hola ";
+	$respuesta .= $nombre;
+   	return $nombre;
 });
 
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
