@@ -41,6 +41,7 @@ $app->post('/guardarDato', function (Request $request) use ($app) {
 
 	$data = array(
 		"fecha"=>date('Y-m-d H:i:s'),
+		"placeSense" => $request->get('lugar'),
 		"temperature" => $temperature
 		);
 
