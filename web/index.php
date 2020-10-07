@@ -40,7 +40,7 @@ $app->post('/guardarDato', function (Request $request) use ($app) {
 		return "Me conecté";
 	}
 	else{
-		return "Conexión Fallida";
+		return $dbconn;
 	}
 
    	$nombre = $request->get('nombre');
