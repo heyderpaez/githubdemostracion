@@ -45,7 +45,7 @@ $app->post('/guardarDato', function (Request $request) use ($app) {
 		"temperature" => $temperature
 		);
 
-	$respuesta = pg_insert($dbconn, "clima_house", $data);
+	$respuesta = pg_insert($dbconn, $request->get('tabla'), $data);
    	
    	return $respuesta;
 });
