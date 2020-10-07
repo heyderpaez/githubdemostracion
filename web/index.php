@@ -34,7 +34,7 @@ $app->post('/enviarDato', function (Request $request) use ($app) {
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
 $app->post('/guardarDato', function (Request $request) use ($app) {
 
-	$dbconn = pg_pconnect("host=ec2-52-21-0-111.compute-1.amazonaws.com port=5432 dbname=da23ojrg1de3ae user=msmhlrvxhgltyv password=baf2024024b59cdd7b5bd1a44e8d8a7773810a5ccbce3719f01225c9baac9bf2");
+	$dbconn = pg_pconnect("host=ec2-52-21-0-111.compute-1.amazonaws.com port=5432 dbname=da23ojrg1de3ae user=msmhlrvxhgltyv password=af2024024b59cdd7b5bd1a44e8d8a7773810a5ccbce3719f01225c9baac9bf2");
 
 	if($dbconn){
 		return "Me conecté";
