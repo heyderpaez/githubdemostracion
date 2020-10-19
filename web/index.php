@@ -80,8 +80,6 @@ $app->get('/consultarDatos', function () use ($app) {
 	$consulta = pg_query($dbconn, "SELECT * FROM clima_house");
 
 	print_r(pg_fetch_all($consulta));
-
-   	return pg_fetch_all($consulta);
 });
 
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
