@@ -87,11 +87,16 @@ $app->get('/consultarDatos', function () use ($app) {
 
 	echo "<br><br>";
 
-	print_r(pg_fetch_array($consulta, 5, PGSQL_ASSOC));
+	$cons_array = pg_fetch_array($consulta, 5, PGSQL_ASSOC); 
+	print_r($cons_array);
+	echo $cons_array[fecha];
 
 	echo "<br><br>";
 
-	print_r(pg_fetch_object($consulta));
+	$cons_object = pg_fetch_object($consulta);
+	print_r($cons_object);
+	echo $cons_object->fecha;
+
 
 	return "OK";
 });
