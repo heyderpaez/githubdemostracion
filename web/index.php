@@ -81,9 +81,11 @@ $app->get('/consultarDatos', function () use ($app) {
 
 	print_r(pg_fetch_all($consulta));
 
-	return pg_fetch_array($consulta, 0, PGSQL_NUM);
+	print_r(pg_fetch_array($consulta, 3, PGSQL_NUM));
 
-	//return "OK";
+	print_r(pg_fetch_array($consulta, 5, PGSQL_ASSOC));
+
+	return "OK";
 });
 
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
