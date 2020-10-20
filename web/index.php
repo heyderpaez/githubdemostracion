@@ -97,6 +97,11 @@ $app->get('/consultarDatos', function () use ($app) {
 	print_r($cons_object);
 	echo $cons_object->fecha;
 
+	echo "<br><br>";
+	
+	echo pg_fetch_result($consulta, 8, 2);
+
+	echo "<br><br>";
 
 	return "OK";
 });
