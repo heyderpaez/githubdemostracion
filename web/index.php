@@ -82,6 +82,8 @@ $app->get('/consultarDatos', function () use ($app) {
 
 	echo $consulta;
 
+	echo "<br><br>";
+
 	print_r(pg_fetch_all($consulta));
 
 	echo "<br><br>";
