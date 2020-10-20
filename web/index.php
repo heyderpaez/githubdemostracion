@@ -69,7 +69,9 @@ $app->post('/guardarConsumo', function (Request $request) use ($app) {
 
 	$respuesta = pg_insert($dbconn, $tabla, $data);
    	
-   	return $respuesta;
+	$last_id = pg_last_oid($respuesta)
+
+   	return $last_id;
 });
 
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
