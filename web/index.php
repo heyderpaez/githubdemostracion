@@ -99,7 +99,7 @@ $app->get('/consultarDatos', function () use ($app) {
 
 	echo "<br><br>";
 	
-	echo pg_fetch_result($consulta, 8, 2);
+	echo pg_fetch_result($consulta, null, 3);
 
 	echo "<br><br>";
 
