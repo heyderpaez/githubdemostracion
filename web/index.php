@@ -90,7 +90,9 @@ $app->get('/consultarDatos', function () use ($app) {
 	print_r(pg_fetch_array($consulta, 5, PGSQL_ASSOC));
 
 	echo "<br><br>";
-	
+
+	print_r(pg_fetch_object($consulta));
+
 	return "OK";
 });
 
