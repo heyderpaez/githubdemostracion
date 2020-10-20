@@ -80,6 +80,8 @@ $app->get('/consultarDatos', function () use ($app) {
 
 	$consulta = pg_query($dbconn, $query);
 
+	echo $consulta;
+
 	print_r(pg_fetch_all($consulta));
 
 	echo "<br><br>";
