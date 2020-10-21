@@ -36,7 +36,7 @@ $app->post('/guardarDato', function (Request $request) use ($app) {
 
 	$tabla = $request->get('tabla');
 
-	if ($tabla = "consumo"){
+	if ($tabla == "consumo"){
 		$corriente = $request->get('corriente');
 		$voltaje = $request->get('voltaje');
 		$lugar = $request->get('lugar');
@@ -47,7 +47,7 @@ $app->post('/guardarDato', function (Request $request) use ($app) {
 			"lugar" => $lugar
 		);
 	}
-	else if ($tabla = "clima_house"){
+	else if ($tabla == "clima_house"){
 		$temperature = $request->get('temperatura');
 		$humidity = $request->get('humedad');
 		$placeSense = $request->get('lugar');
@@ -67,8 +67,6 @@ $app->post('/guardarDato', function (Request $request) use ($app) {
 	$respuesta = pg_insert($dbconn, $tabla, $data);
 
 	echo $respuesta; echo "<br><br>";
-
-	echo "ID insert: ". pg_last_oid($respuesta);
 
    	return "OK";
 });
