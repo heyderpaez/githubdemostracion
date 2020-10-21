@@ -76,7 +76,7 @@ $app->post('/guardarConsumo', function (Request $request) use ($app) {
 
 	echo $respuesta; echo "<br><br>";
 
-	$last_id = pg_last_oid($respuesta);
+	echo "ID insert: ". pg_last_oid($respuesta);
 
    	return $last_id;
 });
