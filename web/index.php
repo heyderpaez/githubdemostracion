@@ -51,22 +51,38 @@ $app->post('/guardarDato', function (Request $request) use ($app) {
    	return $respuesta;
 });
 
-$app->post('/guardarConsumo', function (Request $request) use ($app) {
+$app->post('/guardarDato', function (Request $request) use ($app) {
 
-	$corriente = $request->get('corriente');
-	$voltaje = $request->get('voltaje');
 	$tabla = $request->get('tabla');
-	$lugar = $request->get('lugar');
+
+	if ($tabla = "consumo"){
+		$corriente = $request->get('corriente');
+		$voltaje = $request->get('voltaje');
+		$lugar = $request->get('lugar');
+		$data = array(
+			"fecha"=>date('Y-m-d H:i:s'),
+			"corriente" => $corriente,
+			"voltaje" => $voltaje,
+			"lugar" => $lugar
+		);
+	}
+	else if ($tabla = "clima_house"){
+		$temperature = $request->get('temperatura');
+		$humidity = $request->get('humedad');
+		$placeSense = $request->get('lugar');
+		$data = array(
+			"fecha"=>date('Y-m-d H:i:s'),
+			"placeSense" => $placeSense,
+			"temperature" => $temperature,
+			"humidity" => $humidity
+		);
+	}
+	else{
+		return "Tabla no válida";
+	}
+
 
 	$dbconn = pg_pconnect("host=ec2-52-21-0-111.compute-1.amazonaws.com port=5432 dbname=da23ojrg1de3ae user=msmhlrvxhgltyv password=baf2024024b59cdd7b5bd1a44e8d8a7773810a5ccbce3719f01225c9baac9bf2");
-
-	$data = array(
-		"fecha"=>date('Y-m-d H:i:s'),
-		"corriente" => $corriente,
-		"voltaje" => $voltaje,
-		"lugar" => $lugar
-		);
-
 	$respuesta = pg_insert($dbconn, $tabla, $data);
    	
 	echo $query; echo "<br><br>";
