@@ -67,7 +67,9 @@ $app->post('/guardarConsumo', function (Request $request) use ($app) {
 		"lugar" => $lugar
 		);
 
-	$respuesta = pg_insert($dbconn, $tabla, $data);
+	//$respuesta = pg_insert($dbconn, $tabla, $data);
+
+	$respuesta = pg_query("INSERT INTO " . $tabla . " VALUES (" . date('Y-m-d H:i:s') . "," . $corriente . "," . $voltaje . ", '" . $lugar . "')" );
    	
 	$last_id = pg_last_oid($respuesta);
 
