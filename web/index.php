@@ -67,10 +67,7 @@ $app->post('/guardarConsumo', function (Request $request) use ($app) {
 		"lugar" => $lugar
 		);
 
-	//$respuesta = pg_insert($dbconn, $tabla, $data);
-
-	$query = "INSERT INTO " . $tabla . "(fecha,corriente,voltaje,lugar) VALUES ('" . date('Y-m-d H:i:s') . "'," . $corriente . "," . $voltaje . ", '" . $lugar . "');" ;
-	$respuesta = pg_query($dbconn, $query);
+	$respuesta = pg_insert($dbconn, $tabla, $data);
    	
 	echo $query; echo "<br><br>";
 
