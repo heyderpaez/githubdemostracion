@@ -129,7 +129,14 @@ $app->get('/limpiarDatos', function () use ($app) {
 	$id_last = pg_fetch_result($consulta_last, null, 0);
 	$id_first = pg_fetch_result($consulta_first, null, 0);
 
-	return $id_last - $id_first;
+	$registros = $id_last - $id_first + 1;
+
+
+	if($registros >= 50){
+		$id_borrar = $id_last - 50;
+		$query_delete = "DELETE FROM clima_house WHERE id>=" .$id_borrar.";";
+		$consulta_delete = pg_query($dbconn, $query_delete);
+	}
 });
 
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
