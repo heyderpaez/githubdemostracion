@@ -131,11 +131,14 @@ $app->get('/limpiarDatos', function () use ($app) {
 
 	$registros = $id_last - $id_first + 1;
 
-
 	if($registros >= 50){
 		$id_borrar = $id_last - 50;
 		$query_delete = "DELETE FROM clima_house WHERE id>=" .$id_borrar.";";
 		$consulta_delete = pg_query($dbconn, $query_delete);
+		return "Se borraron los registros";
+	}
+	else{
+		return "No se borraron los registros";
 	}
 });
 
