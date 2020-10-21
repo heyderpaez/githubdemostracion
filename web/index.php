@@ -78,7 +78,7 @@ $app->post('/guardarConsumo', function (Request $request) use ($app) {
 
 	echo "ID insert: ". pg_last_oid($respuesta);
 
-   	return $last_id;
+   	return pg_last_oid($respuesta);
 });
 
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
