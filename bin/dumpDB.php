@@ -12,12 +12,11 @@ $id_first = pg_fetch_result($consulta_first, null, 0);
 
 $registros = $id_last - $id_first + 1;
 
-	if($registros >= 50){
-		$id_borrar = $id_last - 30;
-		$query_delete = "DELETE FROM consumo WHERE id<=" .$id_borrar.";";
-		$consulta_delete = pg_query($dbconn, $query_delete);
-	}
-});
+if($registros >= 50){
+	$id_borrar = $id_last - 30;
+	$query_delete = "DELETE FROM consumo WHERE id<=" .$id_borrar.";";
+	$consulta_delete = pg_query($dbconn, $query_delete);
+}
 
 $query_last = "SELECT * FROM clima_house ORDER BY id DESC LIMIT 1";
 $query_first = "SELECT * FROM clima_house ORDER BY id ASC LIMIT 1";
@@ -35,7 +34,5 @@ $registros = $id_last - $id_first + 1;
 		$query_delete = "DELETE FROM clima_house WHERE id<=" .$id_borrar.";";
 		$consulta_delete = pg_query($dbconn, $query_delete);
 	}
-});
-
 
 ?>
