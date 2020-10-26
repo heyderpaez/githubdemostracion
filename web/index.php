@@ -1,6 +1,7 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+
 date_default_timezone_set('America/Bogota');
 
 require('../vendor/autoload.php');
@@ -75,7 +76,7 @@ $app->post('/guardarDato', function (Request $request) use ($app) {
 $app->get('/consultarDatos', function () use ($app) {
 
 	$dbconn = pg_pconnect("host=ec2-52-21-0-111.compute-1.amazonaws.com port=5432 dbname=da23ojrg1de3ae user=msmhlrvxhgltyv password=baf2024024b59cdd7b5bd1a44e8d8a7773810a5ccbce3719f01225c9baac9bf2");
-	$query = "SELECT * FROM clima_house ORDER BY id DESC LIMIT 15";
+	$query = "SELECT * FROM climahouse ORDER BY id DESC LIMIT 15";
 
 	$consulta = pg_query($dbconn, $query);
 
