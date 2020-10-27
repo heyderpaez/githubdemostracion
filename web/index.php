@@ -1,6 +1,7 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 date_default_timezone_set('America/Bogota');
 
@@ -102,8 +103,17 @@ $app->get('/consultarDatos', function () use ($app) {
 	
 	echo pg_fetch_result($consulta, null, 3);
 
-	echo "<br><br>";
+	echo "<br><br> Ahora haremos un cambio de formato a JSON <br><br>";
 
+	$resultArray = array();
+  	while ($row = pg_fetch_array($consulta, null, PGSQL_ASSOC)) {
+    	$resultArray[] = $row;
+  	}
+
+  	print_r($resultArray);
+
+  	echo "<br><br>";
+  	
 	return "OK";
 });
 
