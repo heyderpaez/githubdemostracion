@@ -81,40 +81,47 @@ $app->get('/consultarDatos', function () use ($app) {
 
 	$consulta = pg_query($dbconn, $query);
 
-	print_r(pg_fetch_all($consulta));
+	// print_r(pg_fetch_all($consulta));
 
-	echo "<br><br>";
+	// echo "<br><br>";
 
-	print_r(pg_fetch_array($consulta, 3, PGSQL_NUM));
+	// print_r(pg_fetch_array($consulta, 3, PGSQL_NUM));
 
-	echo "<br><br>";
+	// echo "<br><br>";
 
-	$cons_array = pg_fetch_array($consulta, 5, PGSQL_ASSOC); 
-	print_r($cons_array);
-	echo $cons_array[fecha];
+	// $cons_array = pg_fetch_array($consulta, 5, PGSQL_ASSOC); 
+	// print_r($cons_array);
+	// echo $cons_array[fecha];
 
-	echo "<br><br>";
+	// echo "<br><br>";
 
-	$cons_object = pg_fetch_object($consulta);
-	print_r($cons_object);
-	echo $cons_object->fecha;
+	// $cons_object = pg_fetch_object($consulta);
+	// print_r($cons_object);
+	// echo $cons_object->fecha;
 
-	echo "<br><br>";
+	// echo "<br><br>";
 	
-	echo pg_fetch_result($consulta, null, 3);
+	// echo pg_fetch_result($consulta, null, 3);
 
-	echo "<br><br> Ahora haremos un cambio de formato a JSON <br><br>";
+	// echo "<br><br> Ahora haremos un cambio de formato a JSON <br><br>";
 
 	$resultArray = array();
   	while ($row = pg_fetch_array($consulta, null, PGSQL_ASSOC)) {
     	$resultArray[] = $row;
   	}
 
-  	print_r($resultArray);
+  	// print_r($resultArray);
 
-  	echo "<br><br>";
-  	
-	return "OK";
+  	// echo "<br><br>";
+
+  $jsonResult = json_encode($resultArray, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
+
+  $response = new Response();
+  $response->setContent($jsonResult);
+  $response->setCharset('UTF-8');
+  $response->headers->set('Content-Type', 'application/json');
+
+  return $response;
 });
 
 $app->post('/limpiarDatos', function (Request $request) use ($app) {
