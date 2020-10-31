@@ -17,25 +17,15 @@
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart() {
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Sabor');
-        data.addColumn('number', 'Porciones');
-        data.addRows([
-          ['Champiñones', 3],
-          ['Jamón y Queso', 1],
-          ['Vegetariana', 1],
-          ['5 Carnes', 1],
-          ['Pepperoni', 2]
-        ]);
-
-        // Set chart options
-        var options = {'title':'Cómo quiere ordenar su pizza?',
-                       'width':700,
-                       'height':500};
-
+      var jsonData = $.ajax({
+          url: "https://githubdemostracion.herokuapp.com/consultarDatos",
+          dataType: "json",
+          async: false
+          }).responseText;
+          
+      // Create our data table out of JSON data loaded from server.
+      var data = new google.visualization.DataTable(jsonData);
+      
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('div_pizza'));
         chart.draw(data, options);
