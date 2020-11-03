@@ -132,11 +132,6 @@ $app->get('/getDataGoogle', function () use ($app) {
 
 	$consulta = pg_query($dbconn, $query);
 
-	echo "respuestas";
-	echo "<br><br>";
-
-	echo $dbconn;
-
 	$table = array();
 	$table['cols'] = array(
 		array('id' => 'fecha', 'label' => 'FECHA', 'type' => 'datetime'),
@@ -164,20 +159,15 @@ $app->get('/getDataGoogle', function () use ($app) {
 	// encode the table as JSON
 	  $jsonTable = json_encode($table, JSON_PRETTY_PRINT);
 
-   // return $app['twig']->render('index.twig', array(
-   //      'json_rows' => $table['rows'],
-   //      'json_cols' => $table['cols'],
-   //      'consumos' => htmlspecialchars_decode($jsonTable, ENT_QUOTES),
-   //  ));
+	  $jsonResult = json_encode($resultArray, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
 
-  //$jsonResult = json_encode($resultArray, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
+	  $response = new Response();
+	  $response->setContent(htmlspecialchars_decode($jsonTable, ENT_QUOTES));
+	  $response->setCharset('UTF-8');
+	  $response->headers->set('Content-Type', 'application/json');
 
-  // $response = new Response();
-  // $response->setContent($jsonTable);
-  // $response->setCharset('UTF-8');
-  // $response->headers->set('Content-Type', 'application/json');
-
-  return htmlspecialchars_decode($jsonTable, ENT_QUOTES);
+	  //return htmlspecialchars_decode($jsonTable, ENT_QUOTES);
+	  return $response;
 });
 
 
