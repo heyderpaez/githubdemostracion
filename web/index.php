@@ -135,7 +135,7 @@ $app->get('/getDataGoogle', function () use ($app) {
 	$table = array();
 	$table['cols'] = array(
 		array('id' => 'fecha', 'label' => 'FECHA', 'type' => 'datetime'),
-		array('id' => 'corriente', 'label' => 'RPM', 'type' => 'number')
+		array('id' => 'corriente', 'label' => 'CORRIENTE', 'type' => 'number')
 	);
 
 	$rows = array();
