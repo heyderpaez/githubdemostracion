@@ -140,9 +140,7 @@ $app->get('/getDataGoogle', function () use ($app) {
 
 	$rows = array();
 
-	while($r = pg_fetch_assoc($consulta_db)) {
-		echo $r;
-		echo "<br><br>";
+	while($r = pg_fetch_assoc($consulta)) {
     $temp = array();
     $fecha_temp = strtotime($r['fecha']);
     $fecha_temp = $fecha_temp * 1000;
@@ -174,7 +172,7 @@ $app->get('/getDataGoogle', function () use ($app) {
   $response->setCharset('UTF-8');
   $response->headers->set('Content-Type', 'application/json');
 
-  //return $response;
+  return $response;
 });
 
 
