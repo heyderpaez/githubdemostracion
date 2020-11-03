@@ -132,7 +132,10 @@ $app->get('/getDataGoogle', function () use ($app) {
 
 	$consulta = pg_query($dbconn, $query);
 
-	echo $consulta;
+	echo "respuestas";
+	echo "<br><br>";
+
+	echo $dbconn;
 
 	$table = array();
 	$table['cols'] = array(
