@@ -124,6 +124,58 @@ $app->get('/consultarDatos', function () use ($app) {
   return $response;
 });
 
+//Ruta de demostración, se recibe(n) dato(s) y se manipulan
+$app->get('/getDataGoogle', function () use ($app) {
+
+	$dbconn = pg_pconnect("host=ec2-52-21-0-111.compute-1.amazonaws.com port=5432 dbname=da23ojrg1de3ae user=msmhlrvxhgltyv password=baf2024024b59cdd7b5bd1a44e8d8a7773810a5ccbce3719f01225c9baac9bf2");
+	$query = "SELECT * FROM climahouse ORDER BY id DESC LIMIT 15";
+
+	$consulta = pg_query($dbconn, $query);
+
+	$table = array();
+	$table['cols'] = array(
+		array('id' => 'fecha', 'label' => 'FECHA', 'type' => 'datetime'),
+		array('id' => 'consumo', 'label' => 'RPM', 'type' => 'number')
+	);
+
+	$rows = array();
+
+	while($r = pg_fetch_assoc($consulta_db)) {
+    $temp = array();
+    $fecha_temp = strtotime($r['fecha']);
+    $fecha_temp = $fecha_temp * 1000;
+    // each column needs to have data inserted via the $temp array
+    $temp[] = array('v' => 'Date('.$fecha_temp.')'); 
+    $temp[] = array('v' => $r['corriente']);
+    // etc...
+
+    // insert the temp array into $rows
+    $rows[] = array('c' => $temp); 
+  }
+
+// populate the table with rows of data
+  $table['rows'] = $rows;
+
+// encode the table as JSON
+  $jsonTable = json_encode($table, JSON_PRETTY_PRINT);
+
+   // return $app['twig']->render('index.twig', array(
+   //      'json_rows' => $table['rows'],
+   //      'json_cols' => $table['cols'],
+   //      'consumos' => htmlspecialchars_decode($jsonTable, ENT_QUOTES),
+   //  ));
+
+  //$jsonResult = json_encode($resultArray, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
+
+  $response = new Response();
+  $response->setContent($jsonTable);
+  $response->setCharset('UTF-8');
+  $response->headers->set('Content-Type', 'application/json');
+
+  return $response;
+});
+
+
 $app->post('/limpiarDatos', function (Request $request) use ($app) {
 
 	$tabla = $request->get('tabla');
