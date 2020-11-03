@@ -169,12 +169,12 @@ $app->get('/getDataGoogle', function () use ($app) {
 
   //$jsonResult = json_encode($resultArray, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
 
-  $response = new Response();
-  $response->setContent($jsonTable);
-  $response->setCharset('UTF-8');
-  $response->headers->set('Content-Type', 'application/json');
+  // $response = new Response();
+  // $response->setContent($jsonTable);
+  // $response->setCharset('UTF-8');
+  // $response->headers->set('Content-Type', 'application/json');
 
-  return $response;
+  return htmlspecialchars_decode($jsonTable, ENT_QUOTES);
 });
 
 
