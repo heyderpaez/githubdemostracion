@@ -141,6 +141,8 @@ $app->get('/getDataGoogle', function () use ($app) {
 	$rows = array();
 
 	while($r = pg_fetch_assoc($consulta_db)) {
+		echo $r;
+		echo "<br><br>";
     $temp = array();
     $fecha_temp = strtotime($r['fecha']);
     $fecha_temp = $fecha_temp * 1000;
@@ -151,13 +153,13 @@ $app->get('/getDataGoogle', function () use ($app) {
 
     // insert the temp array into $rows
     $rows[] = array('c' => $temp); 
-  }
+  	}
 
-// populate the table with rows of data
-  $table['rows'] = $rows;
+	// populate the table with rows of data
+	  $table['rows'] = $rows;
 
-// encode the table as JSON
-  $jsonTable = json_encode($table, JSON_PRETTY_PRINT);
+	// encode the table as JSON
+	  $jsonTable = json_encode($table, JSON_PRETTY_PRINT);
 
    // return $app['twig']->render('index.twig', array(
    //      'json_rows' => $table['rows'],
@@ -172,7 +174,7 @@ $app->get('/getDataGoogle', function () use ($app) {
   $response->setCharset('UTF-8');
   $response->headers->set('Content-Type', 'application/json');
 
-  return $response;
+  //return $response;
 });
 
 
