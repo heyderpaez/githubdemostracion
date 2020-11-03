@@ -141,6 +141,8 @@ $app->get('/getDataGoogle', function () use ($app) {
 	$rows = array();
 
 	while($r = pg_fetch_assoc($consulta)) {
+		echo $r;
+		echo "<br><br>";
     $temp = array();
     $fecha_temp = strtotime($r['fecha']);
     $fecha_temp = $fecha_temp * 1000;
