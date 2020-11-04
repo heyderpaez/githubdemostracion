@@ -128,29 +128,31 @@ $app->get('/consultarDatos', function () use ($app) {
 $app->get('/getDataGoogle', function () use ($app) {
 
 	$dbconn = pg_pconnect("host=ec2-52-21-0-111.compute-1.amazonaws.com port=5432 dbname=da23ojrg1de3ae user=msmhlrvxhgltyv password=baf2024024b59cdd7b5bd1a44e8d8a7773810a5ccbce3719f01225c9baac9bf2");
-	$query = 'SELECT "fecha", "corriente" FROM consumo ORDER BY "fecha" ASC LIMIT 15';
+	$query = 'SELECT * FROM consumo ORDER BY "fecha" DESC LIMIT 15';
 
 	$consulta = pg_query($dbconn, $query);
 
 	$table = array();
 	$table['cols'] = array(
 		array('id' => 'fecha', 'label' => 'FECHA', 'type' => 'datetime'),
-		array('id' => 'corriente', 'label' => 'CORRIENTE', 'type' => 'number')
+		array('id' => 'corriente', 'label' => 'CORRIENTE', 'type' => 'number'),
+		array('id' => 'voltaje', 'label' => 'VOLTAJE', 'type' => 'number')
 	);
 
 	$rows = array();
 
 	while($r = pg_fetch_assoc($consulta)) {
-    $temp = array();
-    $fecha_temp = strtotime($r['fecha']);
-    $fecha_temp = $fecha_temp * 1000;
-    // each column needs to have data inserted via the $temp array
-    $temp[] = array('v' => 'Date('.$fecha_temp.')'); 
-    $temp[] = array('v' => $r['corriente']);
-    // etc...
+	    $temp = array();
+	    $fecha_temp = strtotime($r['fecha']);
+	    $fecha_temp = $fecha_temp * 1000;
+	    // each column needs to have data inserted via the $temp array
+	    $temp[] = array('v' => 'Date('.$fecha_temp.')'); 
+	    $temp[] = array('v' => $r['corriente']);
+	    $temp[] = array('v' => $r['voltaje']);
+	    // etc...
 
-    // insert the temp array into $rows
-    $rows[] = array('c' => $temp); 
+	    // insert the temp array into $rows
+	    $rows[] = array('c' => $temp); 
   	}
 
 	// populate the table with rows of data
